@@ -1,0 +1,21 @@
+/* Шрифты с поддержкой казахских букв */
+@font-face {
+  font-family: "TildaSans-Light";
+  src: url("../assets/fonts/tilda-sans-light.ttf") format("truetype");
+  font-display: block;
+}
+@font-face {
+  font-family: "_AsylbekM02Shelley";
+  src: url("../assets/fonts/asylbek-shelley.ttf") format("truetype");
+  font-display: block;
+}
+@font-face {
+  font-family: "KZOptima";
+  src: url("../assets/fonts/kz-optima.ttf") format("truetype");
+  font-display: block;
+}
+@font-face {
+  font-family: "KZ_RomulC";
+  src: url("../assets/fonts/kz-romulc.otf") format("opentype");
+  font-display: block;
+}

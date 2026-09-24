@@ -1,0 +1,297 @@
+/* =========================================================================
+ * Мерейтойға шақыру — свои стили поверх стилей конструктора
+ * ========================================================================= */
+
+/* Адаптив холста: на экранах до 768px макет по центру, лишнее обрезается (см. js/main.js) */
+
+@media (max-width: 768px) {
+  .sh-block--public {
+    margin: 0 auto !important;
+    overflow: hidden !important;
+  }
+}
+
+/* ---------- стартовый экран-конверт ---------- */
+html.envelope-lock,
+html.envelope-lock body {
+  overflow: hidden !important;
+  height: 100%;
+}
+.envelope-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 10000000;
+  overflow: hidden;
+  -webkit-tap-highlight-color: transparent;
+}
+.envelope-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: #6d4a6d;
+  transition: opacity 1.6s ease-out;
+}
+.envelope-bg-panels {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+}
+.envelope-bg-panels svg,
+.envelope-flap-top svg,
+.envelope-flap-bottom svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+.envelope-flap-top,
+.envelope-flap-bottom {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 50%;
+  z-index: 10;
+  transition: transform 2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  will-change: transform;
+}
+.envelope-flap-top {
+  top: 0;
+}
+.envelope-flap-bottom {
+  bottom: 0;
+}
+.envelope-content {
+  position: absolute;
+  inset: 0;
+  z-index: 20;
+  pointer-events: none;
+}
+.envelope-content .top-section,
+.envelope-content .bottom-section {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90%;
+  text-align: center;
+}
+.envelope-content .top-section {
+  top: 8vh;
+}
+.envelope-content .bottom-section {
+  bottom: 8vh;
+}
+.envelope-invitation {
+  font-family: _AsylbekM02Shelley, cursive;
+  font-weight: normal;
+  font-size: 56px;
+  line-height: 1.2;
+  color: #faf6ed;
+  margin: 0 0 15px;
+  white-space: nowrap;
+}
+.envelope-title {
+  font-family: KZ_RomulC, Georgia, serif;
+  font-weight: normal;
+  font-size: 22px;
+  line-height: 1.3;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: #faf6ed;
+  margin: 0;
+}
+.envelope-bottom-text {
+  font-family: KZ_RomulC, Georgia, serif;
+  font-size: 20px;
+  line-height: 1.4;
+  color: #faf6ed;
+  max-width: 300px;
+  margin: 0 auto;
+  text-align: center;
+}
+.envelope-button-wrap {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 25;
+  transform: translate(-50%, -50%);
+  cursor: pointer;
+  transition: transform 2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  outline: none;
+  border-radius: 50%;
+}
+.envelope-button-wrap:focus-visible .envelope-button {
+  outline: 2px solid #faf6ed;
+  outline-offset: 6px;
+  border-radius: 50%;
+}
+.envelope-button {
+  position: relative;
+  width: 160px;
+  height: 160px;
+  transition: transform 0.3s;
+}
+.envelope-button img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: drop-shadow(0 8px 20px rgba(0, 0, 0, 0.5));
+  -webkit-user-drag: none;
+  user-select: none;
+}
+.envelope-button .button-text {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 100%;
+  transform: translateY(-50%);
+  text-align: center;
+  white-space: nowrap;
+  pointer-events: none;
+  font-family: KZ_RomulC, Georgia, serif;
+  font-weight: bold;
+  font-size: 17px;
+  letter-spacing: 2px;
+  padding-left: 2px;
+  box-sizing: border-box;
+  text-transform: uppercase;
+  color: rgba(50, 25, 5, 0.9);
+  text-shadow: 0 1px 0 rgba(255, 240, 225, 0.45);
+}
+@media (hover: hover) {
+  .envelope-overlay:not(.is-opening) .envelope-button-wrap:hover .envelope-button {
+    transform: scale(1.06);
+  }
+}
+.envelope-overlay:not(.is-opening) .envelope-button-wrap:active .envelope-button {
+  transform: scale(0.95);
+  transition-duration: 0.1s;
+}
+
+.envelope-flap-top.slide-up {
+  transform: translateY(-100%);
+}
+.envelope-flap-bottom.slide-down {
+  transform: translateY(100%);
+}
+.envelope-button-wrap.slide-up {
+  transform: translate(-50%, calc(-50% - 52vh));
+}
+.envelope-bg.fade-out {
+  opacity: 0;
+}
+.envelope-bg-panels.fade-out,
+.envelope-content.fade-out {
+  opacity: 0;
+}
+
+@media (max-width: 768px) {
+  .envelope-content .top-section {
+    top: 6vh;
+  }
+  .envelope-content .bottom-section {
+    bottom: 6vh;
+  }
+  .envelope-invitation {
+    font-size: 46px;
+  }
+  .envelope-title {
+    font-size: 19px;
+  }
+  .envelope-button {
+    width: 144px;
+    height: 144px;
+  }
+  .envelope-button .button-text {
+    font-size: 15px;
+    letter-spacing: 1.5px;
+    padding-left: 1.5px;
+  }
+  .envelope-bottom-text {
+    font-size: 17px;
+    max-width: 270px;
+  }
+}
+@media (max-width: 480px) {
+  .envelope-content .top-section {
+    top: 5vh;
+  }
+  .envelope-content .bottom-section {
+    bottom: 5vh;
+  }
+  .envelope-invitation {
+    font-size: min(40px, 11vw);
+  }
+  .envelope-title {
+    font-size: 16px;
+    letter-spacing: 2px;
+  }
+  .envelope-button {
+    width: 132px;
+    height: 132px;
+  }
+  .envelope-button .button-text {
+    font-size: 14px;
+    letter-spacing: 1px;
+    padding-left: 1px;
+  }
+  .envelope-bottom-text {
+    font-size: 16px;
+    max-width: 250px;
+  }
+}
+/* низкие экраны (телефон в альбомной ориентации): тексты не должны налезать на печать */
+@media (max-height: 520px) {
+  .envelope-invitation {
+    font-size: 34px;
+    margin-bottom: 6px;
+  }
+  .envelope-title {
+    font-size: 15px;
+  }
+  .envelope-bottom-text {
+    font-size: 14px;
+  }
+  .envelope-button {
+    width: 100px;
+    height: 100px;
+  }
+  .envelope-button .button-text {
+    font-size: 12px;
+  }
+}
+
+/* пока конверт закрыт: анимации появления не проигрываются, плавающая кнопка скрыта */
+body.envelope-closed .animation-layer:not(.animation-spin),
+.animation-layer.anim-wait {
+  animation-name: none !important;
+}
+.animation-layer.anim-wait {
+  opacity: 0;
+}
+body.envelope-hide-buttons .audio-player-button {
+  display: none !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .envelope-overlay.is-opening {
+    opacity: 0;
+    transition: opacity 0.4s ease-out;
+  }
+  .envelope-overlay.is-opening * {
+    transition: none !important;
+  }
+  .animation-layer.anim-wait {
+    opacity: 1;
+  }
+}
+
+/* кнопка музыки: иконка паузы, когда играет */
+.audio-player-button .pause-icon {
+  display: none;
+}
+.audio-player-button.is-playing .play-icon {
+  display: none;
+}
+.audio-player-button.is-playing .pause-icon {
+  display: block;
+}
